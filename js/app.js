@@ -107,7 +107,7 @@ const balasan = async (button) => {
     let tmp = button.innerText;
     button.innerText = 'Loading...';
 
-    let id = button.getAttribute('data-uuid').toString();
+    let id2 = button.getAttribute('data-uuid').toString();
     let token2 = localStorage.getItem('token') ?? '';
 
     if (token2.length == 0) {
@@ -130,14 +130,14 @@ const balasan = async (button) => {
         }
     };
 
-    await fetch(document.querySelector('body').getAttribute('data-url') + '/api/comment/' + id, REQ)
+    await fetch(document.querySelector('body').getAttribute('data-url') + '/api/comment/' + id2, REQ)
         .then((res) => res.json())
         .then((res) => {
             if (res.code == 200) {
                 document.getElementById('kirim').style.display = 'none';
                 document.getElementById('batal').style.display = 'block';
                 document.getElementById('kirimbalasan').style.display = 'block';
-                document.getElementById('idbalasan').value = id;
+                document.getElementById('idbalasan').value = id2;
 
                 BALAS.innerHTML = `
                 <div class="card-body bg-light shadow p-3 my-2 rounded-4">
