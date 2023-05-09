@@ -47,6 +47,13 @@ h4{
     color: #ffffff !important;
 }
 
+.pesan-maaf {
+    font-family: 'Monserrat', cursive !important;
+    font-size: 11px;
+    font-style: italic;
+    color: #939393;
+}
+
 .cropper {
     width: 14rem;
     height: 14rem;
