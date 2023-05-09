@@ -560,7 +560,7 @@ window.addEventListener('load', () => {
         div.innerHTML = `
         <p class="mt-0 mb-1 mx-0 p-0 text-light">Kepada Yth Bapak/Ibu/Saudara/i</p>
         <h2 class="text-light">${escapeHtml(name)}</h2>
-        <h4 class="text-light"><p class="mt-0 mb-1 mx-0 p-0 text-light">*Mohon maaf bila ada kesalahan penulisan nama dan gelar</p> </h4>
+        <p class="mt-0 mb-1 mx-0 p-0 text-light">*Mohon maaf bila ada kesalahan penulisan nama dan gelar</p>
         `;
 
         document.getElementById('formnama').value = name;
