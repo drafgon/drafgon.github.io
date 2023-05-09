@@ -107,10 +107,10 @@ const balasan = async (button) => {
     let tmp = button.innerText;
     button.innerText = 'Loading...';
 
-    let id2 = button.getAttribute('data-uuid').toString();
-    let token2 = localStorage.getItem('token') ?? '';
+    let id = button.getAttribute('data-uuid').toString();
+    let token = localStorage.getItem('token') ?? '';
 
-    if (token2.length == 0) {
+    if (token.length == 0) {
         alert('Terdapat kesalahan, token kosong !');
         window.location.reload();
         return;
@@ -126,29 +126,29 @@ const balasan = async (button) => {
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + token2
+            'Authorization': 'Bearer ' + token
         }
     };
 
-    await fetch(document.querySelector('body').getAttribute('data-url') + '/api/comment/' + id2, REQ)
+    await fetch(document.querySelector('body').getAttribute('data-url') + '/api/comment/' + id, REQ)
         .then((res) => res.json())
         .then((res) => {
             if (res.code == 200) {
                 document.getElementById('kirim').style.display = 'none';
                 document.getElementById('batal').style.display = 'block';
                 document.getElementById('kirimbalasan').style.display = 'block';
-                document.getElementById('idbalasan').value = id2;
+                document.getElementById('idbalasan').value = id;
 
                 BALAS.innerHTML = `
                 <div class="card-body bg-light shadow p-3 my-2 rounded-4">
                     <div class="d-flex flex-wrap justify-content-between align-items-center">
                         <p class="text-dark text-truncate m-0 p-0" style="font-size: 0.95rem;">
-                            <strong>${escapeHtml(res.data.nama2)}</strong>
+                            <strong>${escapeHtml(res.data.nama)}</strong>
                         </p>
-                        <small class="text-dark m-0 p-0" style="font-size: 0.75rem;">${res.data.created_at2}</small>
+                        <small class="text-dark m-0 p-0" style="font-size: 0.75rem;">${res.data.created_at}</small>
                     </div>
                     <hr class="text-dark my-1">
-                    <p class="text-dark m-0 p-0" style="white-space: pre-line">${escapeHtml(res.data.komentar2)}</p>
+                    <p class="text-dark m-0 p-0" style="white-space: pre-line">${escapeHtml(res.data.komentar)}</p>
                 </div>`;
             }
 
@@ -173,28 +173,28 @@ const balasan = async (button) => {
 };
 
 const kirimBalasan = async () => {
-    let nama2 = document.getElementById('formnama').value;
-    let komentar2 = document.getElementById('formpesan').value;
-    let token2 = localStorage.getItem('token') ?? '';
-    let id2 = document.getElementById('idbalasan').value;
+    let nama = document.getElementById('formnama').value;
+    let komentar = document.getElementById('formpesan').value;
+    let token = localStorage.getItem('token') ?? '';
+    let id = document.getElementById('idbalasan').value;
 
-    if (token2.length == 0) {
+    if (token.length == 0) {
         alert('Terdapat kesalahan, token kosong !');
         window.location.reload();
         return;
     }
 
-    if (nama2.length == 0) {
+    if (nama.length == 0) {
         alert('nama tidak boleh kosong');
         return;
     }
 
-    if (nama2.length >= 35) {
+    if (nama.length >= 35) {
         alert('panjangan nama maksimal 35');
         return;
     }
 
-    if (komentar2.length == 0) {
+    if (komentar.length == 0) {
         alert('pesan tidak boleh kosong');
         return;
     }
@@ -209,12 +209,12 @@ const kirimBalasan = async () => {
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + token2
+            'Authorization': 'Bearer ' + token
         },
         body: JSON.stringify({
-            nama2: nama2,
-            id2: id2,
-            komentar2: komentar2
+            nama: nama,
+            id: id,
+            komentar: komentar
         })
     };
 
@@ -261,13 +261,13 @@ const innerCard = (comment) => {
         <div class="card-body border-start bg-light py-2 ps-2 pe-0 my-2 ms-2 me-0" id="${data.uuid}">
             <div class="d-flex flex-wrap justify-content-between align-items-center">
                 <p class="text-dark text-truncate m-0 p-0" style="font-size: 0.95rem;">
-                    <strong>${escapeHtml(data.nama2)}</strong>
+                    <strong>${escapeHtml(data.nama)}</strong>
                 </p>
-                <small class="text-dark m-0 p-0" style="font-size: 0.75rem;">${data.created_at2}</small>
+                <small class="text-dark m-0 p-0" style="font-size: 0.75rem;">${data.created_at}</small>
             </div>
             <hr class="text-dark my-1">
-            <p class="text-dark mt-0 mb-1 mx-0 p-0" style="white-space: pre-line">${escapeHtml(data.komentar2)}</p>
-            <button style="font-size: 0.8rem;" onclick="balasan(this)" data-uuid="${data.uuid2}" class="btn btn-sm btn-outline-dark rounded-4 py-0">Balas</button>
+            <p class="text-dark mt-0 mb-1 mx-0 p-0" style="white-space: pre-line">${escapeHtml(data.komentar)}</p>
+            <button style="font-size: 0.8rem;" onclick="balasan(this)" data-uuid="${data.uuid}" class="btn btn-sm btn-outline-dark rounded-4 py-0">Balas</button>
             ${innerCard(data.comment)}
         </div>`;
     });
@@ -282,13 +282,13 @@ const renderCard = (data) => {
     <div class="card-body bg-light shadow p-3 m-0 rounded-4" id="${data.uuid}">
         <div class="d-flex flex-wrap justify-content-between align-items-center">
             <p class="text-dark text-truncate m-0 p-0" style="font-size: 0.95rem;">
-                <strong class="me-1">${escapeHtml(data.nama2)}</strong>${data.hadir2 ? '<i class="fa-solid fa-circle-check text-success"></i>' : '<i class="fa-solid fa-circle-xmark text-danger"></i>'}
+                <strong class="me-1">${escapeHtml(data.nama)}</strong>${data.hadir ? '<i class="fa-solid fa-circle-check text-success"></i>' : '<i class="fa-solid fa-circle-xmark text-danger"></i>'}
             </p>
-            <small class="text-dark m-0 p-0" style="font-size: 0.75rem;">${data.created_at2}</small>
+            <small class="text-dark m-0 p-0" style="font-size: 0.75rem;">${data.created_at}</small>
         </div>
         <hr class="text-dark my-1">
-        <p class="text-dark mt-0 mb-1 mx-0 p-0" style="white-space: pre-line">${escapeHtml(data.komentar2)}</p>
-        <button style="font-size: 0.8rem;" onclick="balasan(this)" data-uuid="${data.uuid2}" class="btn btn-sm btn-outline-dark rounded-4 py-0">Balas</button>
+        <p class="text-dark mt-0 mb-1 mx-0 p-0" style="white-space: pre-line">${escapeHtml(data.komentar)}</p>
+        <button style="font-size: 0.8rem;" onclick="balasan(this)" data-uuid="${data.uuid}" class="btn btn-sm btn-outline-dark rounded-4 py-0">Balas</button>
         ${innerCard(data.comment)}
     </div>`;
     return DIV;
@@ -472,33 +472,33 @@ const login = async () => {
 };
 
 const kirim = async () => {
-    let nama2 = document.getElementById('formnama').value;
-    let hadir2 = document.getElementById('hadiran').value;
-    let komentar2 = document.getElementById('formpesan').value;
-    let token2 = localStorage.getItem('token') ?? '';
+    let nama = document.getElementById('formnama').value;
+    let hadir = document.getElementById('hadiran').value;
+    let komentar = document.getElementById('formpesan').value;
+    let token = localStorage.getItem('token') ?? '';
 
-    if (token2.length == 0) {
+    if (token.length == 0) {
         alert('Terdapat kesalahan, token kosong !');
         window.location.reload();
         return;
     }
 
-    if (nama2.length == 0) {
+    if (nama.length == 0) {
         alert('nama tidak boleh kosong');
         return;
     }
 
-    if (nama2.length >= 35) {
+    if (nama.length >= 35) {
         alert('panjangan nama maksimal 35');
         return;
     }
 
-    if (hadir2 == 0) {
+    if (hadir == 0) {
         alert('silahkan pilih kehadiran');
         return;
     }
 
-    if (komentar2.length == 0) {
+    if (komentar.length == 0) {
         alert('pesan tidak boleh kosong');
         return;
     }
@@ -512,12 +512,12 @@ const kirim = async () => {
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + token2
+            'Authorization': 'Bearer ' + token
         },
         body: JSON.stringify({
-            nama2: nama2,
-            hadir2: hadir2 == 1,
-            komentar2: komentar2
+            nama: nama,
+            hadir: hadir == 1,
+            komentar: komentar
         })
     };
 
@@ -550,19 +550,19 @@ const kirim = async () => {
 
 window.addEventListener('load', () => {
     let modal = new bootstrap.Modal('#exampleModal');
-    let name2 = (new URLSearchParams(window.location.search)).get('to') ?? '';
+    let name = (new URLSearchParams(window.location.search)).get('to') ?? '';
 
-    if (name2.length == 0) {
+    if (name.length == 0) {
         document.getElementById('namatamu').remove();
     } else {
         let div = document.createElement('div');
         div.classList.add('m-2');
         div.innerHTML = `
         <p class="mt-0 mb-1 mx-0 p-0 text-light">Kepada Yth Bapak/Ibu/Saudara/i</p>
-        <h2 class="text-light">${escapeHtml(name2)}</h2>
+        <h2 class="text-light">${escapeHtml(name)}</h2>
         `;
 
-        document.getElementById('formnama').value = name2;
+        document.getElementById('formnama').value = name;
         document.getElementById('namatamu').appendChild(div);
     }
 
