@@ -47,6 +47,12 @@ h4{
     color: #ffffff !important;
 }
 
+.font-estetik-gold {
+    font-family: 'Sacramento', cursive !important;
+    /* color: #000000 !important; */
+    color: #B98E30 !important;
+}
+
 .pesan-maaf {
     font-family: 'Monserrat', cursive !important;
     font-size: 11px;
