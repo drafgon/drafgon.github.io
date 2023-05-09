@@ -1,1 +1,32 @@
+*::-webkit-scrollbar {
+    width: 0.875rem;
+}
 
+*::-webkit-scrollbar-button {
+    display: none;
+}
+
+*::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+    border-radius: 0.5rem;
+    border: 0.25rem solid transparent;
+    background-clip: content-box;
+    background-color: #bbbbbb;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+    background-color: #aaaaaa;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    overflow: overlay;
+    font-family: 'Josefin Sans', sans-serif;
+    padding: 0 !important;
+}
