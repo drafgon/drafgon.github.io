@@ -126,7 +126,7 @@ const balasan = async (button) => {
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + token
+            'Authorization': 'Bearer ' + token2
         }
     };
 
