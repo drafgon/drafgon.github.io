@@ -54,8 +54,12 @@ h4{
 }
 
 .font-estetik-rod {
-    font-family: 'Sacramento', cursive !important;
+    font-family: math, cursive !important;
     /* color: #000000 !important; */
+    color: #41474a !important;
+}
+
+.text-rod {
     color: #41474a !important;
 }
 
