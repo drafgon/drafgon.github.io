@@ -43,19 +43,26 @@ h4{
 
 .font-estetik-putih {
     font-family: 'Sacramento', cursive !important;
-    /* color: #000000 !important; */
     color: #ffffff !important;
 }
 
 .font-estetik-gold {
     font-family: 'Sacramento', cursive !important;
-    /* color: #000000 !important; */
+    color: #ffc704 !important;
+}
+
+.font-estetik-wrod {
+    font-family: math, cursive !important;
+    color: #ffffff !important;
+}
+
+.font-estetik-grod {
+    font-family: math, cursive !important;
     color: #ffc704 !important;
 }
 
 .font-estetik-rod {
     font-family: math, cursive !important;
-    /* color: #000000 !important; */
     color: #41474a !important;
 }
 
