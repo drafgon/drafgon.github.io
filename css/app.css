@@ -53,6 +53,12 @@ h4{
     color: #ffc704 !important;
 }
 
+.font-estetik-rod {
+    font-family: 'Sacramento', cursive !important;
+    /* color: #000000 !important; */
+    color: goldenrod !important;
+}
+
 .pesan-maaf {
     font-family: 'Monserrat', cursive !important;
     font-size: 11px;
